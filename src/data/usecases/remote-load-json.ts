@@ -9,16 +9,16 @@ export class RemoteLoadJson implements LoadJson {
     private readonly httpClient: HttpClient<RemoteLoadJson.Model[]>
   ) { }
 
-  async load(): Promise<LoadJson.Model[]> {
+  async load(): Promise<LoadJson.Model> {
     const httpResponse = await this.httpClient.request({
       url: this.url,
       method: 'get'
     })
-    const data = httpResponse.body || []
+    const data = httpResponse.body || {}
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
         return data
-      case HttpStatusCode.noContent: return []
+      case HttpStatusCode.noContent: return {}
       default: throw new UnexpectedError()
     }
   }

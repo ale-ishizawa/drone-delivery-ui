@@ -1,6 +1,6 @@
 
 export interface LoadJson {
-  load: () => Promise<LoadJson.Model[]>
+  load: () => Promise<LoadJson.Model>
 }
 
 export namespace LoadJson {
